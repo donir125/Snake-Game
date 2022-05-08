@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <QMessageBox>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -241,3 +242,25 @@ void MainWindow::on_button_set_default_clicked()
     ui->slider_difficulty->setValue(3);
 }
 
+void MainWindow::on_button_reset_stat_clicked()
+{
+
+}
+
+void MainWindow::on_button_help_clicked()
+{
+    QMessageBox::StandardButton reply;
+
+    reply = QMessageBox::question(this, "как это все работает", "это легендарная игра с простым принципом: игрок управляет змеей, которая неустанно движется вперед по клетке. Если он коснется стен или откусит себе хвост, он умрет, и игра закончится. Чтобы заработать очки, он должен проглатывать бонусы, которые заставляют его расти, пока его размер не станет проблемой. Концепция немного рудиментарна  если эти информации были полезни для вас?" , QMessageBox::Yes | QMessageBox::No);
+    if (reply == QMessageBox::Yes) {
+       QMessageBox::information(this, "тест", "тогда проверим что вы поняли");
+        hideAll();
+        on_button_start_game_clicked();}
+
+    else {QMessageBox::information(this, "совет", "я посоветую вам сначала выбрать самый низкий уровень и протестировать игру самостоятельно.мы уверень что вы будете поражены простотой нашей игры.");
+           ui->slider_difficulty->setValue(1);
+           on_button_start_game_clicked();
+    }
+
+
+}
